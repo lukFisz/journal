@@ -1,6 +1,5 @@
 package luk.fisz.journal.controllers;
 
-import luk.fisz.journal.db.models.Journal;
 import luk.fisz.journal.dto.JournalDTO;
 import luk.fisz.journal.services.interfaces.JournalService;
 import org.springframework.http.HttpStatus;
@@ -20,7 +19,7 @@ public class JournalController {
         this.journalService = journalService;
     }
 
-    @GetMapping("/get/all")
+    @GetMapping("/all")
     List<JournalDTO> getAll(Principal principal) {
         return journalService.getAllOfSpecificUser(principal);
     }
@@ -32,7 +31,7 @@ public class JournalController {
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-    @PostMapping("/edit")
+    @PutMapping("/edit")
     ResponseEntity<Object> edit(@RequestBody JournalDTO journal,
                                 Principal principal) {
         if (journalService.update(journal, principal) != null)
