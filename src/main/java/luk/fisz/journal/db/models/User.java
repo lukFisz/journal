@@ -23,6 +23,5 @@ public class User {
     private String role = "USER";
     private boolean active = true;
     @OneToMany(mappedBy = "user", targetEntity = Journal.class)
-    @JsonManagedReference
     private List<Journal> journals;
 }

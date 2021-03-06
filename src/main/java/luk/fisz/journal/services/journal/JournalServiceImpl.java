@@ -1,4 +1,4 @@
-package luk.fisz.journal.services;
+package luk.fisz.journal.services.journal;
 
 import luk.fisz.journal.db.models.Journal;
 import luk.fisz.journal.db.models.User;
@@ -6,8 +6,7 @@ import luk.fisz.journal.db.repos.JournalRepo;
 import luk.fisz.journal.db.repos.UserRepo;
 import luk.fisz.journal.dto.JournalDTO;
 import luk.fisz.journal.dto.UserDTO;
-import luk.fisz.journal.services.interfaces.JournalService;
-import luk.fisz.journal.services.interfaces.UserService;
+import luk.fisz.journal.services.user.UserService;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 

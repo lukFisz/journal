@@ -9,11 +9,11 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-public class CustomUserPrincipal implements UserDetails {
+public class JournalUserPrincipal implements UserDetails {
 
     private final User user;
 
-    public CustomUserPrincipal(User user) {
+    public JournalUserPrincipal(User user) {
         this.user = user;
     }
 

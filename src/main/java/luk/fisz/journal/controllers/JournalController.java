@@ -1,7 +1,7 @@
 package luk.fisz.journal.controllers;
 
 import luk.fisz.journal.dto.JournalDTO;
-import luk.fisz.journal.services.interfaces.JournalService;
+import luk.fisz.journal.services.journal.JournalService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -23,11 +23,9 @@ public class Journal {
     private Timestamp createdOn;
     private String title;
     @OneToMany(mappedBy = "journal", targetEntity = Entry.class)
-    @JsonManagedReference
     private List<Entry> entries;
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    @JsonBackReference
     private User user;
 
 }

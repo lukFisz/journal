@@ -11,7 +11,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 @Component
-public class CustomBasicAuthEntryPoint extends BasicAuthenticationEntryPoint {
+public class JournalBasicAuthEntryPoint extends BasicAuthenticationEntryPoint {
 
     @Override
     public void afterPropertiesSet() {
@@ -26,4 +26,5 @@ public class CustomBasicAuthEntryPoint extends BasicAuthenticationEntryPoint {
         PrintWriter writer = response.getWriter();
         writer.println("HTTP Status 401 - " + authException.getMessage());
     }
+
 }

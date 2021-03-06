@@ -11,14 +11,16 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
+public class JournalSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final CustomUserDetailsService customUserDetailsService;
-    private final CustomBasicAuthEntryPoint customBasicAuthEntryPoint;
+    private final JournalUserDetailsService journalUserDetailsService;
+    private final JournalBasicAuthEntryPoint journalBasicAuthEntryPoint;
+    private final SecurityPasswordEncoder securityPasswordEncoder;
 
-    public AppSecurityConfig(CustomUserDetailsService customUserDetailsService, CustomBasicAuthEntryPoint customBasicAuthEntryPoint) {
-        this.customUserDetailsService = customUserDetailsService;
-        this.customBasicAuthEntryPoint = customBasicAuthEntryPoint;
+    public JournalSecurityConfig(JournalUserDetailsService journalUserDetailsService, JournalBasicAuthEntryPoint journalBasicAuthEntryPoint, SecurityPasswordEncoder securityPasswordEncoder) {
+        this.journalUserDetailsService = journalUserDetailsService;
+        this.journalBasicAuthEntryPoint = journalBasicAuthEntryPoint;
+        this.securityPasswordEncoder = securityPasswordEncoder;
     }
 
     @Override
@@ -28,18 +30,14 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests().anyRequest().authenticated()
                 .and()
                 .httpBasic()
-                .authenticationEntryPoint(this.customBasicAuthEntryPoint);
+                .authenticationEntryPoint(this.journalBasicAuthEntryPoint);
     }
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth
-                .userDetailsService(customUserDetailsService)
-                .passwordEncoder(getEncoder());
+                .userDetailsService(journalUserDetailsService)
+                .passwordEncoder(securityPasswordEncoder.getPasswordEncoder());
     }
 
-    @Bean
-    public PasswordEncoder getEncoder() {
-        return new BCryptPasswordEncoder();
-    }
 }

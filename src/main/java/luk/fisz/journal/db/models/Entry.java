@@ -1,6 +1,5 @@
 package luk.fisz.journal.db.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -23,7 +22,6 @@ public class Entry {
     private Timestamp createdOn;
     @ManyToOne
     @JoinColumn(name = "journal_id", nullable = false)
-    @JsonBackReference
     private Journal journal;
 
 }
