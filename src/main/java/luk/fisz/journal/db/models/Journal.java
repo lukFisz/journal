@@ -11,7 +11,7 @@ import javax.persistence.*;
 import java.sql.Timestamp;
 import java.util.List;
 
-@Entity
+@Entity(name = "journals")
 @Setter
 @Getter
 @NoArgsConstructor
