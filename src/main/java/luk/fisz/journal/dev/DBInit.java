@@ -1,4 +1,4 @@
-package luk.fisz.journal.db;
+package luk.fisz.journal.dev;
 
 import luk.fisz.journal.db.models.User;
 import luk.fisz.journal.db.repos.UserRepo;
