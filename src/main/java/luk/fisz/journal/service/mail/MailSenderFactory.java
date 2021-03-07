@@ -25,7 +25,9 @@ public class MailSenderFactory {
         props.put("mail.transport.protocol", TRANSPORT_PROTOCOL);
         props.put("mail.smtp.starttls.enable", TLS);
         props.put("mail.smtp.auth", "true");
-        props.put("mail.debug", "true");
+
+//        set to true for debug mode
+        props.put("mail.debug", "false");
 
         return mailSender;
     }

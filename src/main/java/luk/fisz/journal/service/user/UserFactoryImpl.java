@@ -4,6 +4,8 @@ import luk.fisz.journal.db.models.User;
 import luk.fisz.journal.db.repos.UserRepo;
 import luk.fisz.journal.service.mail.MailService;
 import luk.fisz.journal.service.mail.RegisterMailBodyFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,6 +13,8 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class UserFactoryImpl implements UserFactory {
+
+    private final Logger logger = LoggerFactory.getLogger(UserFactory.class);
 
     private final UserRepo userRepo;
     private final PasswordEncoder passwordEncoder;
@@ -39,10 +43,13 @@ public class UserFactoryImpl implements UserFactory {
                 .setEmail(email)
                 .setFirstname(firstname)
                 .setLastname(lastname);
+        user = userRepo.saveAndFlush(user);
+
+        logger.info("New user was created. Username: " + username);
 
         String body = registerMailBodyFactory.prepareBody(username, email, firstname, lastname);
         mailSender.sendMail(email, "Your account has been created.", body);
 
-        return userRepo.saveAndFlush(user);
+        return user;
     }
 }
