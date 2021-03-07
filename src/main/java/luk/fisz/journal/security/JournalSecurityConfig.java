@@ -24,12 +24,12 @@ public class JournalSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
+                .httpBasic()
+                .authenticationEntryPoint(this.journalBasicAuthEntryPoint)
+                .and()
                 .authorizeRequests().antMatchers("/register").permitAll()
                 .and()
-                .authorizeRequests().anyRequest().authenticated()
-                .and()
-                .httpBasic()
-                .authenticationEntryPoint(this.journalBasicAuthEntryPoint);
+                .authorizeRequests().anyRequest().authenticated();
     }
 
     @Override
