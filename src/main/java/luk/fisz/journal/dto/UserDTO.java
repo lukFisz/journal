@@ -13,6 +13,5 @@ public class UserDTO {
     private long id;
     private String username;
     private List<JournalDTO> journals;
-    private String role;
 
 }

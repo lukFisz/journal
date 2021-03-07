@@ -19,27 +19,6 @@ public class EntryController {
         this.entryService = entryService;
     }
 
-    @GetMapping("/all")
-    List<EntryDTO> getAll(@PathVariable long journalID,
-                          Principal principal) {
-        return entryService.getAllOfSpecificJournal(journalID, principal);
-    }
-
-    @PostMapping("/create")
-    ResponseEntity<Object> create(@PathVariable long journalID,
-                                  @RequestBody EntryDTO entryDTO,
-                                  Principal principal) {
-        if (entryService.create(journalID, entryDTO, principal) != null) {
-            return new ResponseEntity<>(HttpStatus.CREATED);
-        }
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-    }
-
-    @PutMapping("/edit")
-    ResponseEntity<Object> edit(@RequestBody EntryDTO entryDTO) {
-        entryService.update(entryDTO);
-        return new ResponseEntity<>(HttpStatus.OK);
-    }
 
 
 }

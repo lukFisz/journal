@@ -6,6 +6,8 @@ import java.security.Principal;
 
 public interface UserService {
 
+    UserDTO getByUsername(String username);
+
     UserDTO getUserIfPresent(Principal p);
 
 }

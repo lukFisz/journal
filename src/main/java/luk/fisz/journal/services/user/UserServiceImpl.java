@@ -7,26 +7,26 @@ import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.security.Principal;
-import java.util.NoSuchElementException;
 
 @Service
 public class UserServiceImpl implements UserService {
 
-    private final UserRepo userRepo;
+    private final UserFetcher userFetcher;
     private final ModelMapper modelMapper;
 
-    public UserServiceImpl(UserRepo userRepo, ModelMapper modelMapper) {
-        this.userRepo = userRepo;
+    public UserServiceImpl(UserFetcher userFetcher, ModelMapper modelMapper) {
+        this.userFetcher = userFetcher;
         this.modelMapper = modelMapper;
     }
 
     @Override
-    public UserDTO getUserIfPresent(Principal p) {
-        User _user = userRepo
-                .findByUsername(p.getName())
-                .orElseThrow(NoSuchElementException::new);
-        modelMapper.map(_user, UserDTO.class);
-        return modelMapper.map(_user, UserDTO.class);
+    public UserDTO getByUsername(String username) {
+        User user = userFetcher.getByUsername(username);
+        return modelMapper.map(user, UserDTO.class);
     }
 
+    @Override
+    public UserDTO getUserIfPresent(Principal p) {
+        return null;
+    }
 }

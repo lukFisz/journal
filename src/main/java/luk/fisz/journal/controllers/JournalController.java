@@ -1,13 +1,14 @@
 package luk.fisz.journal.controllers;
 
-import luk.fisz.journal.dto.JournalDTO;
 import luk.fisz.journal.services.journal.JournalService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
-import java.util.List;
 
 @RestController
 @RequestMapping("/journal")
@@ -19,24 +20,18 @@ public class JournalController {
         this.journalService = journalService;
     }
 
-    @GetMapping("/all")
-    List<JournalDTO> getAll(Principal principal) {
-        return journalService.getAllOfSpecificUser(principal);
-    }
-
-    @PostMapping("/create")
-    ResponseEntity<Object> create(@RequestBody JournalDTO journal,
-                                  Principal principal) {
-        journalService.create(journal, principal);
-        return new ResponseEntity<>(HttpStatus.CREATED);
-    }
-
-    @PutMapping("/edit")
-    ResponseEntity<Object> edit(@RequestBody JournalDTO journal,
-                                Principal principal) {
-        if (journalService.update(journal, principal) != null)
+    @GetMapping("/{id}")
+    public ResponseEntity<?> get(@PathVariable(required = false) Long id,
+                                 Principal principal) {
+        if (id == null) {
+//            TODO
             return new ResponseEntity<>(HttpStatus.OK);
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        } else {
+            return new ResponseEntity<>(
+                    journalService.getAllByUsername(principal.getName()),
+                    HttpStatus.OK
+            );
+        }
     }
 
 }
