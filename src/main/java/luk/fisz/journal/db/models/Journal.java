@@ -23,6 +23,7 @@ public class Journal {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     private Timestamp createdOn;
+    @Column(nullable = false)
     private String title;
     @OneToMany(mappedBy = "journal", targetEntity = Entry.class)
     private List<Entry> entries;
