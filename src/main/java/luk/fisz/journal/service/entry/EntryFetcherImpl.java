@@ -4,7 +4,6 @@ import luk.fisz.journal.db.models.Entry;
 import luk.fisz.journal.db.models.Journal;
 import luk.fisz.journal.db.repos.EntryRepo;
 import luk.fisz.journal.exception.NoSuchEntryException;
-import luk.fisz.journal.exception.UserNotEntryOwnerException;
 import luk.fisz.journal.service.journal.JournalFetcher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,10 +16,12 @@ public class EntryFetcherImpl implements EntryFetcher {
 
     private final EntryRepo entryRepo;
     private final JournalFetcher journalFetcher;
+    private final EntryOwnerChecker entryOwnerChecker;
 
-    public EntryFetcherImpl(EntryRepo entryRepo, JournalFetcher journalFetcher) {
+    public EntryFetcherImpl(EntryRepo entryRepo, JournalFetcher journalFetcher, EntryOwnerChecker entryOwnerChecker) {
         this.entryRepo = entryRepo;
         this.journalFetcher = journalFetcher;
+        this.entryOwnerChecker = entryOwnerChecker;
     }
 
     @Override
@@ -30,12 +31,8 @@ public class EntryFetcherImpl implements EntryFetcher {
 
     @Override
     public Entry getByIdAndUsername(long entryID, String username) throws NoSuchEntryException {
-        Entry entry = this.get(entryID);
-        String owner = entry.getJournal().getUser().getUsername();
-        if (!owner.equals(username)) {
-            throw new UserNotEntryOwnerException(username, entryID);
-        }
-        return entry;
+        Entry entry = get(entryID);
+        return entryOwnerChecker.checkAndReturn(entry, username);
     }
 
     @Override

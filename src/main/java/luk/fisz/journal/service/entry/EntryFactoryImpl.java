@@ -22,8 +22,11 @@ public class EntryFactoryImpl implements EntryFactory {
     }
 
     @Override
-    public Entry create(String title, String content, long journalID) {
-        Journal journal = journalFetcher.getById(journalID);
+    public Entry create(String title,
+                        String content,
+                        long journalID,
+                        String ownerUsername) {
+        Journal journal = journalFetcher.getByIdAndUsername(journalID, ownerUsername);
         Entry entry = new Entry()
                 .setTitle(title)
                 .setContent(content)
