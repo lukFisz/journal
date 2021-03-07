@@ -8,7 +8,7 @@ public class MailSenderProperty {
     public static final int PORT = 2525;
     public static final boolean SSL = false;
     public static final boolean TLS = true;
-    public static final String USERNAME = "61f643672db5fc";
-    public static final String PASSWORD = "d4d37f46014ff9";
+    public static final String USERNAME = "";
+    public static final String PASSWORD = "";
 
 }
