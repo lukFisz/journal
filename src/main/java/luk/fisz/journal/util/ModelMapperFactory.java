@@ -1,4 +1,4 @@
-package luk.fisz.journal.utils;
+package luk.fisz.journal.util;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;

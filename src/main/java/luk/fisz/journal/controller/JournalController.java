@@ -1,6 +1,6 @@
-package luk.fisz.journal.controllers;
+package luk.fisz.journal.controller;
 
-import luk.fisz.journal.services.journal.JournalService;
+import luk.fisz.journal.service.journal.JournalService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

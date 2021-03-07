@@ -11,5 +11,6 @@ import java.util.Optional;
 @Repository
 public interface JournalRepo extends JpaRepository<Journal, Long> {
     List<Journal> findAllByUser(User user);
+    Optional<Journal> findByIdAndUser(long id, User user);
     boolean existsByUser(User user);
 }

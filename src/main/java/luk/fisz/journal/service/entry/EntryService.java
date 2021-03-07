@@ -1,4 +1,4 @@
-package luk.fisz.journal.services.entry;
+package luk.fisz.journal.service.entry;
 
 import luk.fisz.journal.dto.EntryDTO;
 

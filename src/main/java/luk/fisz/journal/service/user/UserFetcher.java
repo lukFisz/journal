@@ -1,4 +1,4 @@
-package luk.fisz.journal.services.user;
+package luk.fisz.journal.service.user;
 
 import luk.fisz.journal.db.models.User;
 

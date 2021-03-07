@@ -1,4 +1,4 @@
-package luk.fisz.journal.services.journal;
+package luk.fisz.journal.service.journal;
 
 import luk.fisz.journal.db.models.Journal;
 import luk.fisz.journal.dto.JournalDTO;
