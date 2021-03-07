@@ -36,7 +36,6 @@ public class EntryController {
         );
     }
 
-    //    TODO
     @PostMapping("")
     public ResponseEntity<?> create(@PathVariable long journalID,
                                     @RequestBody EntryDTO entryDTO) {
