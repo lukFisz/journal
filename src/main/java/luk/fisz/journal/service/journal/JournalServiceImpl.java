@@ -25,8 +25,8 @@ public class JournalServiceImpl implements JournalService {
     }
 
     @Override
-    public Collection<Journal> getAllByUsername(String username) {
-        Collection<Journal> journals = journalFetcher.getAllByUser(username);
+    public Collection<JournalDTO> getAllByUsername(String username) {
+        Collection<Journal> journals = journalFetcher.getAllByUsername(username);
         return modelMapper.map(
                 journals,
                 new TypeToken<Collection<JournalDTO>>(){}.getType()

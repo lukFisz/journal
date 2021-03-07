@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface JournalService {
 
-    Collection<Journal> getAllByUsername(String username);
+    Collection<JournalDTO> getAllByUsername(String username);
 
     JournalDTO getByIdAndUsername(long id, String username);
 
