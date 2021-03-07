@@ -1,12 +1,10 @@
 package luk.fisz.journal.controller;
 
+import luk.fisz.journal.dto.JournalDTO;
 import luk.fisz.journal.service.journal.JournalService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 
@@ -34,6 +32,15 @@ public class JournalController {
                     HttpStatus.OK
             );
         }
+    }
+
+    @PostMapping("/")
+    public ResponseEntity<?> get(@RequestBody JournalDTO journalDTO,
+                                 Principal principal) {
+        journalService.create(journalDTO, principal.getName());
+        return new ResponseEntity<>(
+                HttpStatus.CREATED
+        );
     }
 
 }

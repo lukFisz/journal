@@ -13,4 +13,5 @@ public interface JournalService {
 
     JournalDTO getByIdAndUsername(long id, String username);
 
+    void create(JournalDTO source, String ownerUsername);
 }
