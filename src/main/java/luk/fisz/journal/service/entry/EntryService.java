@@ -2,17 +2,13 @@ package luk.fisz.journal.service.entry;
 
 import luk.fisz.journal.dto.EntryDTO;
 
-import java.security.Principal;
-import java.util.List;
+import java.util.Collection;
 
 public interface EntryService {
 
-    EntryDTO getOneById(long id);
+    EntryDTO getByIdAndUsername(long entryID, String username);
 
-    List<EntryDTO> getAllOfSpecificJournal(long journalID, Principal principal);
+    Collection<EntryDTO> getAllByJournalAndUsername(long journalID, String username);
 
-    EntryDTO create(long journalID, EntryDTO entryDTO, Principal principal);
-
-    EntryDTO update(EntryDTO entryDTO);
-
+    void create(EntryDTO source, long journalID);
 }

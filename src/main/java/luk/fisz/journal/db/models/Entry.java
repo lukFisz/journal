@@ -3,6 +3,7 @@ package luk.fisz.journal.db.models;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.experimental.Accessors;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -11,6 +12,7 @@ import java.sql.Timestamp;
 @Setter
 @Getter
 @NoArgsConstructor
+@Accessors(chain = true)
 public class Entry {
 
     @Id
@@ -19,6 +21,7 @@ public class Entry {
     private String title;
     @Column(columnDefinition = "TEXT")
     private String content;
+    @Column(nullable = false)
     private Timestamp createdOn;
     @ManyToOne
     @JoinColumn(name = "journal_id", nullable = false)

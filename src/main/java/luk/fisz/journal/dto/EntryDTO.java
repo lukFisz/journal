@@ -3,6 +3,7 @@ package luk.fisz.journal.dto;
 import lombok.Data;
 import lombok.experimental.Accessors;
 
+import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
 
 @Data
