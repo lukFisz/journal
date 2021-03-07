@@ -7,12 +7,6 @@ import org.springframework.stereotype.Service;
 @Service
 public class JournalOwnerCheckerImpl implements JournalOwnerChecker {
 
-    private final JournalFetcher journalFetcher;
-
-    public JournalOwnerCheckerImpl(JournalFetcher journalFetcher) {
-        this.journalFetcher = journalFetcher;
-    }
-
     @Override
     public Journal checkAndReturn(Journal journal, String claimant) {
         String owner = journal.getUser().getUsername();
