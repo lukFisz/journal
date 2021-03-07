@@ -10,5 +10,5 @@ public interface EntryService {
 
     Collection<EntryDTO> getAllByJournalAndUsername(long journalID, String username);
 
-    void create(EntryDTO source, long journalID);
+    void create(EntryDTO source, long journalID, String ownerUsername);
 }

@@ -22,17 +22,16 @@ public class EntryFactoryImpl implements EntryFactory {
     }
 
     @Override
-    public Entry create(String title,
-                        String content,
+    public Entry create(Entry entry,
                         long journalID,
                         String ownerUsername) {
         Journal journal = journalFetcher.getByIdAndUsername(journalID, ownerUsername);
-        Entry entry = new Entry()
-                .setTitle(title)
-                .setContent(content)
+        Entry _entry = new Entry()
+                .setTitle(entry.getTitle())
+                .setContent(entry.getContent())
                 .setCreatedOn(new Timestamp(System.currentTimeMillis()))
                 .setJournal(journal);
-        return entryRepo.saveAndFlush(entry);
+        return entryRepo.saveAndFlush(_entry);
     }
 
 }

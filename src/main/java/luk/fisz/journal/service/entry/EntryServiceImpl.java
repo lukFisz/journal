@@ -1,5 +1,6 @@
 package luk.fisz.journal.service.entry;
 
+import luk.fisz.journal.db.models.Entry;
 import luk.fisz.journal.dto.EntryDTO;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
@@ -37,11 +38,11 @@ public class EntryServiceImpl implements EntryService {
     }
 
     @Override
-    public void create(EntryDTO source, long journalID) {
+    public void create(EntryDTO source, long journalID, String ownerUsername) {
         entryFactory.create(
-                source.getTitle(),
-                source.getContent(),
-                journalID
+                modelMapper.map(source, Entry.class),
+                journalID,
+                ownerUsername
         );
     }
 

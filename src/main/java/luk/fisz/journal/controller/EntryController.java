@@ -38,8 +38,9 @@ public class EntryController {
 
     @PostMapping("")
     public ResponseEntity<?> create(@PathVariable long journalID,
-                                    @RequestBody EntryDTO entryDTO) {
-        entryService.create(entryDTO, journalID);
+                                    @RequestBody EntryDTO entryDTO,
+                                    Principal principal) {
+        entryService.create(entryDTO, journalID, principal.getName());
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 }
