@@ -16,5 +16,6 @@ public class UserRegistrationMessage {
 
     public static final String emailNotBlankMsg = "E-mail is mandatory";
     public static final String emailPatternMsg = "E-mail is not valid";
-    public static final String emailPatternRegex = "^[A-Za-z0-9._%+-]+@[a-zA-Z0-9.-]+\\\\.[a-zA-Z]{2,6}$";
+    public static final String emailPatternRegex = "^[A-Za-z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,6}$";
+
 }
