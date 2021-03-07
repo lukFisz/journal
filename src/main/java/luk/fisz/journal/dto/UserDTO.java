@@ -11,6 +11,9 @@ import java.util.List;
 public class UserDTO {
 
     private long id;
+    private String firstname;
+    private String lastname;
+    private String email;
     private String username;
     private List<JournalDTO> journals;
 

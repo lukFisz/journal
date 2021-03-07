@@ -2,19 +2,20 @@ package luk.fisz.journal.service.user;
 
 import luk.fisz.journal.db.models.User;
 import luk.fisz.journal.dto.UserDTO;
+import luk.fisz.journal.dto.UserRegistrationDTO;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-
-import java.security.Principal;
 
 @Service
 public class UserServiceImpl implements UserService {
 
     private final UserFetcher userFetcher;
+    private final UserFactory userFactory;
     private final ModelMapper modelMapper;
 
-    public UserServiceImpl(UserFetcher userFetcher, ModelMapper modelMapper) {
+    public UserServiceImpl(UserFetcher userFetcher, UserFactory userFactory, ModelMapper modelMapper) {
         this.userFetcher = userFetcher;
+        this.userFactory = userFactory;
         this.modelMapper = modelMapper;
     }
 
@@ -25,7 +26,14 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserDTO getUserIfPresent(Principal p) {
-        return null;
+    public void create(UserRegistrationDTO registrationDTO) {
+        userFactory.create(
+                registrationDTO.getUsername(),
+                registrationDTO.getPassword(),
+                registrationDTO.getEmail(),
+                registrationDTO.getFirstname(),
+                registrationDTO.getLastname()
+        );
     }
+
 }
