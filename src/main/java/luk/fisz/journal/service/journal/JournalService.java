@@ -11,14 +11,6 @@ public interface JournalService {
 
     Collection<Journal> getAllByUsername(String username);
 
-    JournalDTO getOneById(long id);
-
-    List<JournalDTO> getAllOfSpecificUser(Principal principal);
-
-    JournalDTO create(JournalDTO journalDTO, Principal principal);
-
-    JournalDTO update(JournalDTO journalDTO, Principal principal);
-
-    boolean confirmOwner(long id, Principal principal);
+    JournalDTO getByIdAndUsername(long id, String username);
 
 }

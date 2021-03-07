@@ -28,6 +28,7 @@ public class JournalFetcherImpl implements JournalFetcher {
         return journalRepo.findAllByUser(user);
     }
 
+    @Override
     public Journal getByIdAndUsername(long id, String username) {
         User user = userFetcher.getByUsername(username);
         return journalRepo.findByIdAndUser(id, user).orElseThrow(() -> new NoSuchJournalException(id));

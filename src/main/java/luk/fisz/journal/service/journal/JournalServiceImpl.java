@@ -51,48 +51,11 @@ public class JournalServiceImpl implements JournalService {
     }
 
     @Override
-    public JournalDTO getOneById(long id) {
+    public JournalDTO getByIdAndUsername(long id, String username) {
         return modelMapper.map(
-                journalRepo.findById(id).orElseThrow(NoSuchElementException::new),
+                journalFetcher.getByIdAndUsername(id, username),
                 JournalDTO.class
         );
     }
 
-    @Override
-    public List<JournalDTO> getAllOfSpecificUser(Principal principal) {
-        UserDTO user = userService.getUserIfPresent(principal);
-        return user.getJournals();
-    }
-
-    @Override
-    public JournalDTO create(JournalDTO journalDTO, Principal principal) {
-        UserDTO user = userService.getUserIfPresent(principal);
-        Journal journalModel = new Journal();
-        journalModel.setTitle(journalDTO.getTitle());
-        journalModel.setCreatedOn(new Timestamp(new Date().getTime()));
-        journalModel.setUser(modelMapper.map(user, User.class));
-        return modelMapper.map(journalRepo.save(journalModel), JournalDTO.class);
-    }
-
-    @Override
-    public JournalDTO update(JournalDTO journalDTO, Principal principal) {
-        Journal journalModel = journalRepo
-                .findById(journalDTO.getId())
-                .orElseThrow(NoSuchElementException::new);
-
-        if (this.confirmOwner(journalDTO.getId(), principal)) {
-            journalModel.setTitle(journalDTO.getTitle());
-            journalRepo.save(journalModel);
-            return modelMapper.map(journalRepo.save(journalModel), JournalDTO.class);
-        }
-        return null;
-    }
-
-    @Override
-    public boolean confirmOwner(long id, Principal principal) {
-        User userModel = userRepo
-                .findByUsername(principal.getName())
-                .orElseThrow(NoSuchElementException::new);
-        return journalRepo.existsByUser(userModel);
-    }
 }

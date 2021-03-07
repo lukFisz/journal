@@ -6,4 +6,6 @@ import java.util.Collection;
 
 public interface JournalFetcher {
     Collection<Journal> getAllByUser(String username);
+
+    Journal getByIdAndUsername(long id, String username);
 }

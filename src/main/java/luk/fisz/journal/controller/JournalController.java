@@ -23,9 +23,11 @@ public class JournalController {
     @GetMapping("/{id}")
     public ResponseEntity<?> get(@PathVariable(required = false) Long id,
                                  Principal principal) {
-        if (id == null) {
-//            TODO
-            return new ResponseEntity<>(HttpStatus.OK);
+        if (id != null) {
+            return new ResponseEntity<>(
+                    journalService.getByIdAndUsername(id, principal.getName()),
+                    HttpStatus.OK
+            );
         } else {
             return new ResponseEntity<>(
                     journalService.getAllByUsername(principal.getName()),
