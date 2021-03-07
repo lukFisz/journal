@@ -5,7 +5,7 @@ import luk.fisz.journal.db.models.Journal;
 import java.util.Collection;
 
 public interface JournalFetcher {
-    Journal getById(long id);
+    Journal get(long id);
 
     Collection<Journal> getAllByUsername(String username);
 

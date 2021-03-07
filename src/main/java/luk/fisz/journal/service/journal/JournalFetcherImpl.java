@@ -4,7 +4,6 @@ import luk.fisz.journal.db.models.Journal;
 import luk.fisz.journal.db.models.User;
 import luk.fisz.journal.db.repos.JournalRepo;
 import luk.fisz.journal.exception.NoSuchJournalException;
-import luk.fisz.journal.exception.UserNotJournalOwnerException;
 import luk.fisz.journal.service.user.UserFetcher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,14 +16,16 @@ public class JournalFetcherImpl implements JournalFetcher {
 
     private final JournalRepo journalRepo;
     private final UserFetcher userFetcher;
+    private final JournalOwnerChecker journalOwnerChecker;
 
-    public JournalFetcherImpl(JournalRepo journalRepo, UserFetcher userFetcher) {
+    public JournalFetcherImpl(JournalRepo journalRepo, UserFetcher userFetcher, JournalOwnerChecker journalOwnerChecker) {
         this.journalRepo = journalRepo;
         this.userFetcher = userFetcher;
+        this.journalOwnerChecker = journalOwnerChecker;
     }
 
     @Override
-    public Journal getById(long id) throws NoSuchJournalException {
+    public Journal get(long id) throws NoSuchJournalException {
         return journalRepo.findById(id).orElseThrow(() -> new NoSuchJournalException(id));
     }
 
@@ -36,13 +37,8 @@ public class JournalFetcherImpl implements JournalFetcher {
 
     @Override
     public Journal getByIdAndUsername(long id, String username) throws NoSuchJournalException {
-        Journal journal = this.getById(id);
-        User user = userFetcher.getByUsername(username);
-        String journalOwner = journal.getUser().getUsername();
-        if (!user.getUsername().equals(journalOwner)) {
-            throw new UserNotJournalOwnerException(username, journal.getId());
-        }
-        return journal;
+        Journal journal = this.get(id);
+        return journalOwnerChecker.checkAndReturn(journal, username);
     }
 
 }
