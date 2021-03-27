@@ -2,6 +2,7 @@ package luk.fisz.journal.controller;
 
 import luk.fisz.journal.dto.EntryDTO;
 import luk.fisz.journal.service.entry.EntryService;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -9,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import java.security.Principal;
 
 @RestController
-@RequestMapping("/journal/{journalID}/entry")
+@PropertySource("classpath:route.properties")
+@RequestMapping("/${entry.route}")
 public class EntryController {
 
     private final EntryService entryService;
@@ -18,7 +20,7 @@ public class EntryController {
         this.entryService = entryService;
     }
 
-    @GetMapping("")
+    @GetMapping
     public ResponseEntity<?> getAllByJournal(@PathVariable long journalID,
                                              Principal principal) {
         return new ResponseEntity<>(
@@ -36,7 +38,7 @@ public class EntryController {
         );
     }
 
-    @PostMapping("")
+    @PostMapping
     public ResponseEntity<?> create(@PathVariable long journalID,
                                     @RequestBody EntryDTO entryDTO,
                                     Principal principal) {

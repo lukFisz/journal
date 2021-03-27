@@ -2,6 +2,7 @@ package luk.fisz.journal.controller;
 
 import luk.fisz.journal.dto.JournalDTO;
 import luk.fisz.journal.service.journal.JournalService;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,7 +11,8 @@ import javax.validation.Valid;
 import java.security.Principal;
 
 @RestController
-@RequestMapping("/journal")
+@PropertySource("classpath:route.properties")
+@RequestMapping("${journal.route}")
 public class JournalController {
 
     private final JournalService journalService;
