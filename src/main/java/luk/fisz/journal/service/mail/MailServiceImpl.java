@@ -5,7 +5,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+
+import static luk.fisz.journal.common.AppBean.APP_ASYNC_EXEC;
 
 @Service
 public class MailServiceImpl implements MailService {
@@ -21,6 +24,7 @@ public class MailServiceImpl implements MailService {
         this.mailProperties = mailProperties;
     }
 
+    @Async(APP_ASYNC_EXEC)
     @Override
     public void sendMail(String receiver, String subject, String body) {
 
