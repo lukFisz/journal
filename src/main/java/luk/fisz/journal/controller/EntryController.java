@@ -11,7 +11,6 @@ import java.security.Principal;
 
 @RestController
 @PropertySource("classpath:route.properties")
-@RequestMapping("/${entry.route}")
 public class EntryController {
 
     private final EntryService entryService;
@@ -20,7 +19,7 @@ public class EntryController {
         this.entryService = entryService;
     }
 
-    @GetMapping
+    @GetMapping("${entry.all}")
     public ResponseEntity<?> getAllByJournal(@PathVariable long journalID,
                                              Principal principal) {
         return new ResponseEntity<>(
@@ -29,7 +28,7 @@ public class EntryController {
         );
     }
 
-    @GetMapping("/{entryID}")
+    @GetMapping("/${entry.by_id}")
     public ResponseEntity<?> get(@PathVariable long entryID,
                                  Principal principal) {
         return new ResponseEntity<>(
@@ -38,7 +37,7 @@ public class EntryController {
         );
     }
 
-    @PostMapping
+    @PostMapping("${entry.create}")
     public ResponseEntity<?> create(@PathVariable long journalID,
                                     @RequestBody EntryDTO entryDTO,
                                     Principal principal) {
