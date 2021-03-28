@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Properties;
 
-import static luk.fisz.journal.property.MailSenderProperty.*;
+import static luk.fisz.journal.common.MailSenderProperties.*;
 
 @Service
 public class MailSenderFactory {

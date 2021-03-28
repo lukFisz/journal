@@ -1,7 +1,7 @@
 package luk.fisz.journal.service.journal;
 
 import luk.fisz.journal.db.models.Journal;
-import luk.fisz.journal.exception.UserNotJournalOwnerException;
+import luk.fisz.journal.exception.type.UserNotJournalOwnerException;
 import org.springframework.stereotype.Service;
 
 @Service

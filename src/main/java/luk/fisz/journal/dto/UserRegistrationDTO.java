@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import static luk.fisz.journal.property.validation.UserRegistrationMessage.*;
+import static luk.fisz.journal.common.validation.UserRegistrationProperties.*;
 
 @Setter
 @Getter
@@ -18,21 +18,21 @@ public class UserRegistrationDTO {
     private String firstname;
     private String lastname;
 
-    @NotBlank(message = emailNotBlankMsg)
-    @Pattern(regexp = emailPatternRegex,
-            message = emailPatternMsg)
+    @NotBlank(message = "{user_registration.email.not_blank}")
+    @Pattern(regexp = EMAIL_PATTERN_REGEX,
+            message = "{user_registration.email.pattern}")
     private String email;
 
-    @NotBlank(message = usernameNotBlankMsg)
-    @Size(min = usernameSizeMin,
-            max = usernameSizeMax,
-            message = usernameSizeMsg)
+    @NotBlank(message = "{user_registration.username.not_blank}")
+    @Size(min = USERNAME_SIZE_MIN,
+            max = USERNAME_SIZE_MAX,
+            message = "{user_registration.username.size}")
     private String username;
 
-    @NotBlank(message = passwordNotBlankMsg)
-    @Size(min = passwordSizeMin,
-            max = passwordSizeMax,
-            message = passwordSizeMsg)
+    @NotBlank(message = "{user_registration.password.not_blank}")
+    @Size(min = PASSWORD_SIZE_MIN,
+            max = PASSWORD_SIZE_MAX,
+            message = "{user_registration.password.size}")
     private String password;
 
 }

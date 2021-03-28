@@ -6,8 +6,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
-
-import static luk.fisz.journal.property.MailSenderProperty.*;
+import static luk.fisz.journal.common.MailSenderProperties.SENDER_ADDRESS;
 
 @Service
 public class MailServiceImpl implements MailService {

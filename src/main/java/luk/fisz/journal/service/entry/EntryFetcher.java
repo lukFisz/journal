@@ -1,7 +1,7 @@
 package luk.fisz.journal.service.entry;
 
 import luk.fisz.journal.db.models.Entry;
-import luk.fisz.journal.exception.NoSuchEntryException;
+import luk.fisz.journal.exception.type.NoSuchEntryException;
 
 import java.util.Collection;
 

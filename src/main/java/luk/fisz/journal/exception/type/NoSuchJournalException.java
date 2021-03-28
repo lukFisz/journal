@@ -1,4 +1,4 @@
-package luk.fisz.journal.exception;
+package luk.fisz.journal.exception.type;
 
 public class NoSuchJournalException extends RuntimeException {
 

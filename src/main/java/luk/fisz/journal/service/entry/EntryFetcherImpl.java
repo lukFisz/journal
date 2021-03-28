@@ -3,7 +3,7 @@ package luk.fisz.journal.service.entry;
 import luk.fisz.journal.db.models.Entry;
 import luk.fisz.journal.db.models.Journal;
 import luk.fisz.journal.db.repos.EntryRepo;
-import luk.fisz.journal.exception.NoSuchEntryException;
+import luk.fisz.journal.exception.type.NoSuchEntryException;
 import luk.fisz.journal.service.journal.JournalFetcher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

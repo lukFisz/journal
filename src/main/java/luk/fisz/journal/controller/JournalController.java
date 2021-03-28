@@ -12,7 +12,6 @@ import java.security.Principal;
 
 @RestController
 @PropertySource("classpath:route.properties")
-@RequestMapping("${journal.route}")
 public class JournalController {
 
     private final JournalService journalService;
@@ -21,8 +20,8 @@ public class JournalController {
         this.journalService = journalService;
     }
 
-    @GetMapping("/{id}")
-    public ResponseEntity<?> get(@PathVariable Long id,
+    @GetMapping("/${journal.by_id}")
+    public ResponseEntity<?> get(@PathVariable("id") Long id,
                                  Principal principal) {
         return new ResponseEntity<>(
                 journalService.getByIdAndUsername(id, principal.getName()),
@@ -30,7 +29,7 @@ public class JournalController {
         );
     }
 
-    @GetMapping("")
+    @GetMapping("${journal.all}")
     public ResponseEntity<?> get(Principal principal) {
         return new ResponseEntity<>(
                 journalService.getAllByUsername(principal.getName()),
@@ -38,7 +37,7 @@ public class JournalController {
         );
     }
 
-    @PostMapping("")
+    @PostMapping("${journal.create}")
     public ResponseEntity<?> create(@Valid @RequestBody JournalDTO journalDTO,
                                     Principal principal) {
         journalService.create(journalDTO, principal.getName());

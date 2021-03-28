@@ -9,8 +9,6 @@ import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
 import java.util.List;
 
-import static luk.fisz.journal.property.validation.JournalMessage.*;
-
 @NoArgsConstructor
 @Setter
 @Getter
@@ -19,7 +17,7 @@ public class JournalDTO {
 
     private long id;
     private Timestamp createdOn;
-    @NotBlank(message = titleNotBlank)
+    @NotBlank(message = "{journal.title.not_blank}")
     private String title;
     private List<EntryDTO> entries;
 
