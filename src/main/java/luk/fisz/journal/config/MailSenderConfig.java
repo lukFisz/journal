@@ -1,4 +1,4 @@
-package luk.fisz.journal.service.mail;
+package luk.fisz.journal.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.mail.javamail.JavaMailSender;
@@ -10,7 +10,7 @@ import java.util.Properties;
 import static luk.fisz.journal.common.MailSenderProperties.*;
 
 @Service
-public class MailSenderFactory {
+public class MailSenderConfig {
 
     @Bean
     public JavaMailSender getMailSender() {
