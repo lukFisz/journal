@@ -1,4 +1,4 @@
-package luk.fisz.journal.common;
+package luk.fisz.journal.common.mail;
 
 import lombok.AllArgsConstructor;
 import org.springframework.boot.context.properties.ConfigurationProperties;

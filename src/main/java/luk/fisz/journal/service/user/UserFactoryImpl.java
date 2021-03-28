@@ -1,7 +1,9 @@
 package luk.fisz.journal.service.user;
 
+import luk.fisz.journal.common.mail.MailEventType;
 import luk.fisz.journal.db.models.User;
 import luk.fisz.journal.db.repos.UserRepo;
+import luk.fisz.journal.dto.Mail;
 import luk.fisz.journal.service.mail.MailService;
 import luk.fisz.journal.service.mail.body.NewUserMailBodyFactory;
 import org.slf4j.Logger;
@@ -48,7 +50,12 @@ public class UserFactoryImpl implements UserFactory {
         logger.info("New user was created. Username: " + username);
 
         String body = newUserMailBodyFactory.create(username, email, firstname, lastname);
-        mailSender.sendMail(email, "Your account has been created.", body);
+        Mail mail = new Mail()
+                .setBody(body)
+                .setReceiver(user.getEmail())
+                .setEventType(MailEventType.USER_CREATION)
+                .setSubject("Your account has been created.");
+        mailSender.send(mail);
 
         return user;
     }

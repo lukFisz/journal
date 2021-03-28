@@ -1,6 +1,7 @@
 package luk.fisz.journal.service.mail;
 
-import luk.fisz.journal.common.MailProperties;
+import luk.fisz.journal.common.mail.MailProperties;
+import luk.fisz.journal.dto.Mail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.mail.SimpleMailMessage;
@@ -26,16 +27,19 @@ public class MailServiceImpl implements MailService {
 
     @Async(APP_ASYNC_EXEC)
     @Override
-    public void sendMail(String receiver, String subject, String body) {
+    public void send(Mail mail) {
 
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom(mailProperties.SENDER);
-        message.setTo(receiver);
-        message.setSubject(subject);
-        message.setText(body);
+        message.setTo(mail.getReceiver());
+        message.setSubject(mail.getSubject());
+        message.setText(mail.getBody());
         mailSender.send(message);
 
-        logger.info("The email was send. Receiver: " + receiver);
+        logger.info(
+                "Email was sent. Receiver: " + mail.getReceiver()
+                + " | Event type: " + mail.getEventType()
+        );
     }
 
 }
