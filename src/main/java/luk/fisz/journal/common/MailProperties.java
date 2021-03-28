@@ -1,6 +1,15 @@
 package luk.fisz.journal.common;
 
-public class MailSenderProperties {
+import lombok.AllArgsConstructor;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.context.properties.ConstructorBinding;
+import org.springframework.context.annotation.PropertySource;
+
+@PropertySource("classpath:application.properties")
+@ConfigurationProperties(prefix = "app.mail")
+@ConstructorBinding
+@AllArgsConstructor
+public class MailProperties {
 
     public final String SENDER;
     public final String TRANSPORT_PROTOCOL;
