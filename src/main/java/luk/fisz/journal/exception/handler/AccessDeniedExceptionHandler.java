@@ -17,7 +17,7 @@ import static luk.fisz.journal.common.ExceptionProperties.MESSAGE_KEY;
 public class AccessDeniedExceptionHandler {
 
     @ResponseStatus(HttpStatus.FORBIDDEN)
-    @ExceptionHandler(value = {UserNotEntryOwnerException.class, UserNotJournalOwnerException.class, RuntimeException.class})
+    @ExceptionHandler(value = {UserNotEntryOwnerException.class, UserNotJournalOwnerException.class})
     public Map<String, String> handleValidationExceptions(RuntimeException ex) {
         Map<String, String> errors = new HashMap<>();
         errors.put(EXCEPTION_KEY, ex.getClass().getSimpleName());
