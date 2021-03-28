@@ -3,7 +3,7 @@ package luk.fisz.journal.service.user;
 import luk.fisz.journal.db.models.User;
 import luk.fisz.journal.db.repos.UserRepo;
 import luk.fisz.journal.service.mail.MailService;
-import luk.fisz.journal.service.mail.RegisterMailBodyFactory;
+import luk.fisz.journal.service.mail.body.NewUserMailBodyFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -19,13 +19,13 @@ public class UserFactoryImpl implements UserFactory {
     private final UserRepo userRepo;
     private final PasswordEncoder passwordEncoder;
     private final MailService mailSender;
-    private final RegisterMailBodyFactory registerMailBodyFactory;
+    private final NewUserMailBodyFactory newUserMailBodyFactory;
 
-    public UserFactoryImpl(UserRepo userRepo, PasswordEncoder passwordEncoder, MailService mailSender, RegisterMailBodyFactory registerMailBodyFactory) {
+    public UserFactoryImpl(UserRepo userRepo, PasswordEncoder passwordEncoder, MailService mailSender, NewUserMailBodyFactory newUserMailBodyFactory) {
         this.userRepo = userRepo;
         this.passwordEncoder = passwordEncoder;
         this.mailSender = mailSender;
-        this.registerMailBodyFactory = registerMailBodyFactory;
+        this.newUserMailBodyFactory = newUserMailBodyFactory;
     }
 
     @Override
@@ -47,7 +47,7 @@ public class UserFactoryImpl implements UserFactory {
 
         logger.info("New user was created. Username: " + username);
 
-        String body = registerMailBodyFactory.prepareBody(username, email, firstname, lastname);
+        String body = newUserMailBodyFactory.create(username, email, firstname, lastname);
         mailSender.sendMail(email, "Your account has been created.", body);
 
         return user;
