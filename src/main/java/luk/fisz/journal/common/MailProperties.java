@@ -1,6 +1,6 @@
-package luk.fisz.journal.property;
+package luk.fisz.journal.common;
 
-public class MailSenderProperty {
+public class MailSenderProperties {
 
     public static final String SENDER_ADDRESS = "noreplay@journal.pl";
     public static final String TRANSPORT_PROTOCOL = "smtp";
@@ -8,7 +8,7 @@ public class MailSenderProperty {
     public static final int PORT = 2525;
     public static final boolean SSL = false;
     public static final boolean TLS = true;
-    public static final String USERNAME = "";
-    public static final String PASSWORD = "";
+    public static final String USERNAME = "b82cba06222572";
+    public static final String PASSWORD = "8f65b9803bbffa";
 
 }
