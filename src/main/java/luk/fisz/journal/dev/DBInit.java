@@ -23,7 +23,13 @@ public class DBInit {
         User user = new User();
         user.setUsername("user");
         user.setPassword(passwordEncoder.encode("user"));
+        user.setEmail("");
+        User user1 = new User();
+        user1.setUsername("user1");
+        user1.setPassword(passwordEncoder.encode("user1"));
+        user1.setEmail("");
         userRepo.save(user);
+        userRepo.save(user1);
     }
 
 }
