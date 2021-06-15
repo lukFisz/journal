@@ -1,11 +1,11 @@
-package luk.fisz.journal.dto;
+package luk.fisz.journal.common.util.mail;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.experimental.Accessors;
-import luk.fisz.journal.common.mail.MailEventType;
+import luk.fisz.journal.common.definition.mail.MailEventType;
 
 @Setter @Getter @Accessors(chain = true)
 @AllArgsConstructor @NoArgsConstructor

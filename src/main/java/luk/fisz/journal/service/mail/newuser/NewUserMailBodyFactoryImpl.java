@@ -1,4 +1,4 @@
-package luk.fisz.journal.service.mail.body;
+package luk.fisz.journal.service.mail.newuser;
 
 import org.springframework.stereotype.Service;
 

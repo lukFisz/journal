@@ -1,4 +1,4 @@
-package luk.fisz.journal.dto;
+package luk.fisz.journal.db.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -8,7 +8,7 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
-import static luk.fisz.journal.common.validation.UserRegistrationProperties.*;
+import static luk.fisz.journal.common.definition.validation.UserRegistrationProperties.*;
 
 @Setter
 @Getter

@@ -1,4 +1,4 @@
-package luk.fisz.journal.service.mail.body;
+package luk.fisz.journal.service.mail.newuser;
 
 public interface NewUserMailBodyFactory {
     String create(String username,

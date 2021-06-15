@@ -1,4 +1,4 @@
-package luk.fisz.journal.common.validation;
+package luk.fisz.journal.common.definition.validation;
 
 public class UserRegistrationProperties {
 

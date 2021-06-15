@@ -1,9 +1,7 @@
 package luk.fisz.journal.service.user;
 
-import luk.fisz.journal.dto.UserDTO;
-import luk.fisz.journal.dto.UserRegistrationDTO;
-
-import java.security.Principal;
+import luk.fisz.journal.db.dto.UserDTO;
+import luk.fisz.journal.db.dto.UserRegistrationDTO;
 
 public interface UserService {
 

@@ -1,9 +1,8 @@
-package luk.fisz.journal.dto;
+package luk.fisz.journal.db.dto;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
 
-import javax.validation.constraints.NotBlank;
 import java.sql.Timestamp;
 
 @Data

@@ -1,6 +1,6 @@
 package luk.fisz.journal.config;
 
-import luk.fisz.journal.common.mail.MailProperties;
+import luk.fisz.journal.common.definition.mail.MailProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.mail.javamail.JavaMailSender;

@@ -1,6 +1,6 @@
 package luk.fisz.journal.controller;
 
-import luk.fisz.journal.dto.EntryDTO;
+import luk.fisz.journal.db.dto.EntryDTO;
 import luk.fisz.journal.service.entry.EntryService;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;

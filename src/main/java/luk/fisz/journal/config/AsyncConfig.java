@@ -7,7 +7,7 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 import java.util.concurrent.Executor;
 
-import static luk.fisz.journal.common.AppBean.APP_ASYNC_EXEC;
+import static luk.fisz.journal.common.definition.AppBean.APP_ASYNC_EXEC;
 
 @Configuration
 @EnableAsync

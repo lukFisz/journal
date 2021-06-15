@@ -1,6 +1,6 @@
 package luk.fisz.journal.service.entry;
 
-import luk.fisz.journal.dto.EntryDTO;
+import luk.fisz.journal.db.dto.EntryDTO;
 
 import java.util.Collection;
 

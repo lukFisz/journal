@@ -1,11 +1,8 @@
 package luk.fisz.journal.service.journal;
 
-import luk.fisz.journal.db.models.Journal;
-import luk.fisz.journal.dto.JournalDTO;
+import luk.fisz.journal.db.dto.JournalDTO;
 
-import java.security.Principal;
 import java.util.Collection;
-import java.util.List;
 
 public interface JournalService {
 

@@ -1,12 +1,12 @@
 package luk.fisz.journal.service.user;
 
-import luk.fisz.journal.common.mail.MailEventType;
+import luk.fisz.journal.common.definition.mail.MailEventType;
 import luk.fisz.journal.db.models.User;
 import luk.fisz.journal.db.repos.UserRepo;
-import luk.fisz.journal.dto.Mail;
+import luk.fisz.journal.common.util.mail.Mail;
 import luk.fisz.journal.service.mail.MailService;
-import luk.fisz.journal.service.mail.body.MailBodyFactory;
-import luk.fisz.journal.service.mail.body.NewUserMailBodyFactory;
+import luk.fisz.journal.common.util.mail.MailTemplateEngine;
+import luk.fisz.journal.service.mail.newuser.NewUserMailBodyFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,15 +26,11 @@ public class UserFactoryImpl implements UserFactory {
     private final UserRepo userRepo;
     private final PasswordEncoder passwordEncoder;
     private final MailService mailSender;
-    private final NewUserMailBodyFactory newUserMailBodyFactory;
-    private final MailBodyFactory mailBodyFactory;
 
-    public UserFactoryImpl(UserRepo userRepo, PasswordEncoder passwordEncoder, MailService mailSender, NewUserMailBodyFactory newUserMailBodyFactory, MailBodyFactory mailBodyFactory) {
+    public UserFactoryImpl(UserRepo userRepo, PasswordEncoder passwordEncoder, MailService mailSender) {
         this.userRepo = userRepo;
         this.passwordEncoder = passwordEncoder;
         this.mailSender = mailSender;
-        this.newUserMailBodyFactory = newUserMailBodyFactory;
-        this.mailBodyFactory = mailBodyFactory;
     }
 
     @Override
@@ -52,28 +48,12 @@ public class UserFactoryImpl implements UserFactory {
                 .setEmail(email)
                 .setFirstname(firstname)
                 .setLastname(lastname);
-//        user = userRepo.saveAndFlush(user);
+        user = userRepo.saveAndFlush(user);
 
         logger.info("New user was created. Username: " + username);
 
-//todo
+        mailSender.sendNewUserMail(user);
 
-//        String body = newUserMailBodyFactory.create(username, email, firstname, lastname);
-        Map<String, Object> templateParams = new HashMap<>();
-        templateParams.put("username", username);
-        templateParams.put("email", email);
-        try {
-            String body = mailBodyFactory.create("temp.txt", templateParams);
-            System.out.println(body);
-            Mail mail = new Mail()
-                    .setBody(body)
-                    .setReceiver(user.getEmail())
-                    .setEventType(MailEventType.USER_CREATION)
-                    .setSubject("Your account has been created.");
-//            mailSender.send(mail);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         return user;
     }
 }

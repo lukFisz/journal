@@ -1,7 +1,7 @@
 package luk.fisz.journal.service.mail;
 
-import luk.fisz.journal.dto.Mail;
+import luk.fisz.journal.db.models.User;
 
 public interface MailService {
-    void send(Mail mail);
+    void sendNewUserMail(User user);
 }

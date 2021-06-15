@@ -3,7 +3,6 @@ package luk.fisz.journal.service.journal;
 import luk.fisz.journal.db.models.Journal;
 import luk.fisz.journal.db.models.User;
 import luk.fisz.journal.db.repos.JournalRepo;
-import luk.fisz.journal.dto.JournalDTO;
 import luk.fisz.journal.service.user.UserFetcher;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

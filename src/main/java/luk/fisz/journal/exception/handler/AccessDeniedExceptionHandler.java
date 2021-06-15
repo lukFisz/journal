@@ -10,8 +10,8 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import java.util.HashMap;
 import java.util.Map;
 
-import static luk.fisz.journal.common.ExceptionProperties.EXCEPTION_KEY;
-import static luk.fisz.journal.common.ExceptionProperties.MESSAGE_KEY;
+import static luk.fisz.journal.common.definition.ExceptionProperties.EXCEPTION_KEY;
+import static luk.fisz.journal.common.definition.ExceptionProperties.MESSAGE_KEY;
 
 @RestControllerAdvice
 public class AccessDeniedExceptionHandler {

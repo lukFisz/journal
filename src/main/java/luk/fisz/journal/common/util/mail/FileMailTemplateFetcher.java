@@ -1,4 +1,4 @@
-package luk.fisz.journal.service.mail.body;
+package luk.fisz.journal.common.util.mail;
 
 import org.springframework.stereotype.Service;
 
@@ -11,8 +11,8 @@ import java.io.IOException;
 public class FileMailTemplateFetcher implements MailTemplateFetcher {
 
     @Override
-    public String fetch(String templateName) {
-        File file = new File("/home/lukaszf/"+templateName);
+    public String fetch(String pathToTemplate) {
+        File file = new File(pathToTemplate);
         StringBuilder stringBuilder = new StringBuilder();
         try {
             BufferedReader br = new BufferedReader(new FileReader(file));

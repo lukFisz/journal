@@ -1,7 +1,7 @@
 package luk.fisz.journal.service.journal;
 
 import luk.fisz.journal.db.models.Journal;
-import luk.fisz.journal.dto.JournalDTO;
+import luk.fisz.journal.db.dto.JournalDTO;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.TypeToken;
 import org.springframework.stereotype.Service;

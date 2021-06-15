@@ -1,8 +1,7 @@
-package luk.fisz.journal.dto;
+package luk.fisz.journal.db.dto;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
-import luk.fisz.journal.db.models.Journal;
 
 import java.util.List;
 

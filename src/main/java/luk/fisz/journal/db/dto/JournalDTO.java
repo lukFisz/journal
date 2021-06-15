@@ -1,4 +1,4 @@
-package luk.fisz.journal.dto;
+package luk.fisz.journal.db.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

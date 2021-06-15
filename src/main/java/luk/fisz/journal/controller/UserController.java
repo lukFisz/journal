@@ -1,6 +1,6 @@
 package luk.fisz.journal.controller;
 
-import luk.fisz.journal.dto.UserRegistrationDTO;
+import luk.fisz.journal.db.dto.UserRegistrationDTO;
 import luk.fisz.journal.service.user.UserService;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.http.HttpStatus;
@@ -22,7 +22,7 @@ public class UserController {
     }
 
     @PostMapping("/${route-user.register}")
-    public ResponseEntity<?> register(@Valid @RequestBody UserRegistrationDTO userRegistrationDTO) throws Exception {
+    public ResponseEntity<?> register(@Valid @RequestBody UserRegistrationDTO userRegistrationDTO) {
         userService.create(userRegistrationDTO);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }

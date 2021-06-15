@@ -1,45 +1,39 @@
 package luk.fisz.journal.service.mail;
 
-import luk.fisz.journal.common.mail.MailProperties;
-import luk.fisz.journal.dto.Mail;
+import luk.fisz.journal.common.util.mail.Mail;
+import luk.fisz.journal.common.util.mail.MailSender;
+import luk.fisz.journal.db.dto.UserDTO;
+import luk.fisz.journal.db.models.User;
+import luk.fisz.journal.service.mail.newuser.NewUserMailFactory;
+import org.modelmapper.ModelMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.mail.SimpleMailMessage;
-import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
-import static luk.fisz.journal.common.AppBean.APP_ASYNC_EXEC;
+import static luk.fisz.journal.common.definition.AppBean.APP_ASYNC_EXEC;
 
 @Service
 public class MailServiceImpl implements MailService {
 
     private final Logger logger = LoggerFactory.getLogger(MailService.class);
 
-    private final JavaMailSender mailSender;
-    private final MailProperties mailProperties;
+    private final MailSender mailSender;
+    private final ModelMapper modelMapper;
+    private final NewUserMailFactory newUserMailFactory;
 
-    public MailServiceImpl(JavaMailSender mailSender,
-                           MailProperties mailProperties) {
+    public MailServiceImpl(MailSender mailSender, ModelMapper modelMapper, NewUserMailFactory newUserMailFactory) {
         this.mailSender = mailSender;
-        this.mailProperties = mailProperties;
+        this.modelMapper = modelMapper;
+        this.newUserMailFactory = newUserMailFactory;
     }
 
     @Async(APP_ASYNC_EXEC)
     @Override
-    public void send(Mail mail) {
-
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom(mailProperties.SENDER);
-        message.setTo(mail.getReceiver());
-        message.setSubject(mail.getSubject());
-        message.setText(mail.getBody());
-        mailSender.send(message);
-
-        logger.info(
-                "Email was sent. Receiver: " + mail.getReceiver()
-                + " | Event type: " + mail.getEventType()
-        );
+    public void sendNewUserMail(User user) {
+        UserDTO userDTO = modelMapper.map(user, UserDTO.class);
+        Mail mail = newUserMailFactory.create(userDTO);
+        mailSender.send(mail);
     }
 
 }

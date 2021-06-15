@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static luk.fisz.journal.common.ExceptionProperties.MESSAGE_KEY;
+import static luk.fisz.journal.common.definition.ExceptionProperties.MESSAGE_KEY;
 
 @Component
 public class UnauthorizedExceptionHandler implements AuthenticationEntryPoint {
